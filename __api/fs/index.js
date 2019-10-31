@@ -40,4 +40,20 @@ r.post('/sensor', (req, res)=>{
     })  
 })
 
+
+
+
+r.put('/sensor/:id', (req, res)=>{
+    let data = {
+        "sensor_name": req.body.sensor_name,
+        "status": req.body.status,
+        "trigger": req.body.trigger,
+        "value": req.body.value
+    }
+    sensors.doc(req.params.id).update(data).then((snap)=>{
+        if(snap){
+            res.status(201).json(data);
+        }        
+    })  
+})
 module.exports = r;
