@@ -5,6 +5,8 @@ const sensor = require('./modules/sensors')
 
 const user = require('./modules/users')
 
+const lwmm = require('./modules/lwmm')
+
 r.get('/sensors', sensor.get_sensors)
  .get('/sensor/:id', sensor.get_sensor_by_id)
  .post('/sensor', sensor.add_sensor)
