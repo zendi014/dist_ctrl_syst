@@ -23,9 +23,7 @@ var server = http.createServer(app);
 const io = require(
             "socket.io"
           )(server);
-
 io.on('connection', function(socket){
-
   socket.on('connection', function(dt){
     console.log(dt)
     //broadcast data to all nodes
@@ -36,12 +34,10 @@ io.on('connection', function(socket){
     }
     io.emit("sensor_data",data);
   })
-
   //waiting data coming from all nodes
   socket.on("sensor_data", function(msg){
     console.log(msg);
   })
-
 })
 
 
