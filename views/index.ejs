@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html>
-
-
-
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    
+
   </head>
-
-  
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+    <script src="/javascripts/socket.io.js"></script>
 
-    <script src="./javascripts/main.js"></script>
+    <script>
+      //init socket connection
+      var socket = io.connect(
+            "http://localhost:3000"
+            );
+      
+      socket.emit(
+          "connection",
+          "a Node Connected"
+      );
 
+      //waiting data from emitter
+      socket.on("sensor_data", function(msg){
+        console.log(msg);
+        dt = { 
+          "source_id": "N01",
+          "dest_id": "N00",
+          "txt": "HEY FROM N01"
+        }
+        //then emitting to the srv
+        socket.emit("sensor_data", dt); 
+      });
+
+     
+
+    </script>
+  
   </body>
-
-
-
-  </html>
+</html>
