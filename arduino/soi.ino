@@ -1,3 +1,5 @@
+#include <Stepper.h>
+
 //////////////////// LIBRARIES /////////////////////
 #include <Arduino.h>
 #include <Wire.h>
@@ -15,10 +17,11 @@ SocketIoClient webSocket;
 
 
 const char *ssid = "zenzen-Inspiron-7559";
-const char *password = "zenzen-Inspiron-7559";
+const char *password = "open1234";
 char path[] = "/";
 char host[]= "10.42.0.1"; //WLAN IP (SERVER)
 int port = 3000;
+
 
 
 
@@ -124,7 +127,7 @@ void msg_pesan(const char * payload, size_t length) {
         Serial.println(dist_key);
         Serial.println(msg);
         
-//        blink_(msg);
+      test_blink_(msg);
     }
 
 }
@@ -147,7 +150,7 @@ void broadcast_test(){
 
 
 
-void blink_(int i){
+void test_blink_(int i){
   for(int a=0; a<i; a++){
     digitalWrite(LED_BUILTIN, HIGH);
     delay(200);
