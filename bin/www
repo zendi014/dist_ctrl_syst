@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('dist-ctrl-syst:server');
+var debug = require('debug')('sample-dist:server');
 var http = require('http');
 
 /**
@@ -23,9 +23,13 @@ var server = http.createServer(app);
 const io = require(
             "socket.io"
           )(server);
+
 io.on('connection', function(socket){
+
   socket.on('connection', function(dt){
-    console.log(dt)
+    console.log(dt);
+
+    /*
     //broadcast data to all nodes
     data = {
       "source_id" : "N00",
@@ -33,13 +37,20 @@ io.on('connection', function(socket){
       "value": 200
     }
     io.emit("sensor_data",data);
+    */
   })
-  //waiting data coming from all nodes
-  socket.on("sensor_data", function(msg){
-    console.log(msg);
-  })
-})
 
+  socket.on("esp_connection", function(dt){
+    console.log(dt);
+  })
+
+  
+  //bin/www
+  socket.on("kirim_pesan", function(dt){
+      io.sockets.emit("kirim_pesan", dt); //to arudino
+  })
+
+})
 
 
 /**
