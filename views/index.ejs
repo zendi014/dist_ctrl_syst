@@ -37,9 +37,14 @@
 
     <script>
       //init socket connection
-      var socket = io.connect(
-            "http://localhost:3000"
-            );
+      // var socket = io.connect(
+      //       "http://10.42.0.1:3000"
+      //       );
+
+      var arr = window.location.href.split("/");
+      var result = arr[0] + "//" + arr[2];
+      var socket = io.connect(result);
+
       
       socket.emit(
           "connection",
